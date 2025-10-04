@@ -1,4 +1,4 @@
-DB_URL := 'postgres://postgres:rahasia@localhost:5435/zentra_product_service?sslmode=disable'
+DB_URL := 'postgres://postgres:fauji3423+@localhost:5435/zentra-product-database?sslmode=disable'
 
 # Migration
 # example: make migration name=create_user_table

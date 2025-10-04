@@ -3,3 +3,4 @@ dummy*.*
 dummy/
 cmd/main
 app.log
+certs
