@@ -20,6 +20,24 @@ services:
     command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
     restart: on-failure
 
+  zentra-product-service:
+    image: zentra-product-service:latest
+    container_name: zentra-product-service
+    ports:
+      - "3500:3500"
+      - "4500:4500"
+    networks:
+      - zentra-network
+      - zentra-product-service-network
+    depends_on:
+      - zentra-product-service-postgres
+    environment:
+      - ZENTRA_APP_STATUS=DEVELOPMENT
+      - ZENTRA_PRODUCT_SERVICE_WORKSPACE=/app/workspace
+    volumes:
+      - ./workspace:/app/workspace
+    restart: on-failure
+
 volumes:
   zentra-product-service-postgres-data:
     name: zentra-product-service-postgres-data
