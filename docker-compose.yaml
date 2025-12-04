@@ -32,15 +32,20 @@ services:
     depends_on:
       - zentra-product-service-postgres
     environment:
-      - ZENTRA_APP_STATUS=DEVELOPMENT
-      - ZENTRA_PRODUCT_SERVICE_WORKSPACE=/app/workspace
+      - ZENTRA_APP_STATUS=PRODUCTION
+      - ZENTRA_CONFIG_ADDRESS=[vault_address]
+      - ZENTRA_CONFIG_TOKEN=[vault_token]
     volumes:
       - ./workspace:/app/workspace
+      - ./tmp:/app/workspace/tmp
+      - zentra-product-service-logs:/app
     restart: on-failure
 
 volumes:
   zentra-product-service-postgres-data:
     name: zentra-product-service-postgres-data
+  zentra-product-service-logs:
+    name: zentra-product-service-logs
 
 networks:
   zentra-product-service-network:
